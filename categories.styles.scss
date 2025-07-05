@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
 .category-container {
   min-width: 30%;
   height: 240px;
@@ -28,6 +27,7 @@
       opacity: 0.9;
     }
   }
+
 
   &.large {
     height: 380px;
