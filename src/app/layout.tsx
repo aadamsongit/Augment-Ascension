@@ -20,6 +20,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ul className="flex gap-6">
             {[
               { href: "/", label: "Home" },
+              { href: "/signup", label: "Signup" },
               { href: "/shop", label: "Shop" },
               { href: "/about", label: "About" },
               { href: "/cart", label: "Cart" },
