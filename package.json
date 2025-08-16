@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@storybook/react": "^9.1.2",
     "firebase": "^12.1.0",
     "next": "15.3.3",
     "react": "^19.0.0",
