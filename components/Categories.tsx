@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import CategoryItem from "./CategoryItem";
 
@@ -13,7 +15,7 @@ const Categories: React.FC = () => {
   return (
     <div className="categories-container w-full flex flex-wrap justify-between">
       {categories.map((category) => (
-        <CategoryItem key={category.id} category={category}/>
+        <CategoryItem key={category.id} category={category} />
       ))}
       ;
     </div>

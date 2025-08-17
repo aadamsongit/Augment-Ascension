@@ -1,3 +1,4 @@
+"use client";
 
 import Categories from "../../components/Categories";
 
