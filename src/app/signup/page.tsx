@@ -1,6 +1,7 @@
 "use client";
 
 import { signInWithGooglePopup } from "@/utils/firebase";
+import "../globals.css";
 
 export default function Signup() {
   const handleSignup = async () => {
