@@ -2,10 +2,10 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { loginSchema } from "../lib/schemas/user";
+import { loginSchema, LoginFormData } from "../lib/schemas/user";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginForm() {
   const {
     register,
@@ -16,23 +16,28 @@ export default function LoginForm() {
   });
 
   const onSubmit = (data: LoginFormData) => {
-    console.log("Login data submitted:", data);
-    // Handle login logic here
+    console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" {...register("email")} />
-        {errors.email && <span>{errors.email.message}</span>}
+        <label>Email</label>
+        <Input {...register("email")} autoComplete="new-email" />
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </div>
       <div>
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" {...register("password")} />
-        {errors.password && <span>{errors.password.message}</span>}
+        <label>Password</label>
+        <Input
+          type="password"
+          {...register("password")}
+          autoComplete="new-password"
+        />
+        {errors.password && (
+          <p className="text-red-500">{errors.password.message}</p>
+        )}
       </div>
-      <button type="submit">Login</button>
+      <Button type="submit">Login</Button>
     </form>
   );
 }
