@@ -1,20 +1,16 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { themes } from 'storybook/internal/theming';
 
 const preview: Preview = {
   parameters: {
-    controls: {
-      matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
-      },
+    darkMode: {
+      stylePreview: true, // Ensures preview uses dark mode styles
+      darkClass: 'dark', // Tailwind's dark mode class
+      lightClass: 'light',
+      current: 'dark', // Set initial theme to dark
+      // Use prefers-color-scheme for auto detection
+      classTarget: 'html',
     },
-
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
   },
 };
 

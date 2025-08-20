@@ -13,7 +13,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const pathname = usePathname();
 
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body>
         <nav className="flex items-center justify-between p-4 bg-black text-white">
           <h1 className="font-bold text-xl">Augment Ascension</h1>

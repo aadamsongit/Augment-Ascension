@@ -20,4 +20,9 @@ const config: StorybookConfig = {
     "..\\public"
   ]
 };
+
+module.exports = {
+  addons: ['storybook-dark-mode'],
+};
+
 export default config;
