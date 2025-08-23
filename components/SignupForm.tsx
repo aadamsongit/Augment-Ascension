@@ -48,7 +48,7 @@ export default function SignupForm() {
           <p className="text-red-500">{errors.confirmPassword.message}</p>
         )}
       </div>
-      <Button type="submit">Sign Up</Button>
+  {/* Sign Up button removed; now handled in signup/page.tsx */}
     </form>
   );
 }

@@ -4,6 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import "./globals.css";
+import { Rajdhani } from "next/font/google";
+
+const rajdhani = Rajdhani({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+});
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -14,6 +21,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en" className="dark">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>{`body, h1 { font-family: 'Orbitron', sans-serif; }`}</style>
+      </head>
       <body>
         <nav className="flex items-center justify-between p-4 bg-black text-white">
           <h1 className="font-bold text-xl">Augment Ascension</h1>

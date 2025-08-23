@@ -20,24 +20,30 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <label>Email</label>
-        <Input {...register("email")} autoComplete="new-email" />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-      <div>
-        <label>Password</label>
-        <Input
-          type="password"
-          {...register("password")}
-          autoComplete="new-password"
-        />
-        {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
-        )}
-      </div>
-      <Button type="submit">Login</Button>
-    </form>
+    <div>
+      <h1 className="text-2xl font-bold mb-2">Login</h1>
+      <h3 className="text-lg font-semibold mb-4">Access your account</h3>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <label>Email</label>
+          <Input {...register("email")} autoComplete="new-email" />
+          {errors.email && (
+            <p className="text-red-500">{errors.email.message}</p>
+          )}
+        </div>
+        <div>
+          <label>Password</label>
+          <Input
+            type="password"
+            {...register("password")}
+            autoComplete="new-password"
+          />
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
+        </div>
+        <Button type="submit">Login</Button>
+      </form>
+    </div>
   );
 }

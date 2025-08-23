@@ -18,4 +18,4 @@ export const loginSchema = z.object({
 });
 
 // 2️⃣ Infer TypeScript type from schema
-export type LoginFormData = z.infer<typeof loginSchema>; // <-- THIS is the type React Hook Form uses
+export type LoginFormData = z.infer<typeof loginSchema>; 

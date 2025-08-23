@@ -4,6 +4,7 @@ import { signInWithGooglePopup } from "@/utils/firebase";
 import "../globals.css";
 import LoginForm from "../../../components/LoginForm";
 import SignupForm from "../../../components/SignupForm";
+import { Button } from "@/components/ui/button";
 
 export default function Signup() {
   const handleSignup = async () => {
@@ -22,13 +23,22 @@ export default function Signup() {
       </div>
       <div className="w-full max-w-md">
         <SignupForm />
-        <div className="text-center text-gray-500 mt-4">or</div>
-        <button
-          onClick={handleSignup}
-          className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition mt-2"
-        >
-          Signup with Google
-        </button>
+        <div className="flex flex-row gap-4 mt-4">
+          <Button
+            type="submit"
+            form="signup-form"
+            className="flex-1 w-full"
+          >
+            Sign Up
+          </Button>
+          <button
+            type="button"
+            onClick={handleSignup}
+            className="flex-1 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            Signup with Google
+          </button>
+        </div>
       </div>
     </div>
   );
