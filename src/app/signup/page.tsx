@@ -24,11 +24,7 @@ export default function Signup() {
       <div className="w-full max-w-md">
         <SignupForm />
         <div className="flex flex-row gap-4 mt-4">
-          <Button
-            type="submit"
-            form="signup-form"
-            className="flex-1 w-full"
-          >
+          <Button type="submit" form="signup-form" className="flex-1 w-full">
             Sign Up
           </Button>
           <button

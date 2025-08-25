@@ -23,10 +23,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className="dark">
       <head>
         <link
+          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
           rel="stylesheet"
         />
-        <style>{`body, h1 { font-family: 'Orbitron', sans-serif; }`}</style>
+        <style>{`nav, nav h1, nav ul, nav li, nav a { font-family: 'Rajdhani', sans-serif; }`}</style>
       </head>
       <body>
         <nav className="flex items-center justify-between p-4 bg-black text-white">

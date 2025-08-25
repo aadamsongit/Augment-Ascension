@@ -5,6 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginFormData } from "../lib/schemas/user";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  auth,
+  createAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
+} from "@/utils/firebase";
 
 export default function LoginForm() {
   const {
@@ -15,8 +20,24 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
+  const onSubmit = async (data: LoginFormData) => {
+    console.log("onSubmit fired", data);
+    try {
+      const user = await createAuthUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      if (user) {
+        console.log("User created:", user);
+      } else {
+        console.log("No user returned from createAuthUserWithEmailAndPassword");
+      }
+      // Optional: create user document
+      await createUserDocumentFromAuth(user);
+    } catch (error) {
+      console.error("Signup error:", error);
+    }
   };
 
   return (
@@ -25,14 +46,30 @@ export default function LoginForm() {
       <h3 className="text-lg font-semibold mb-4">Access your account</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <label>Email</label>
+          <label
+            style={{
+              fontFamily: "Orbitron, sans-serif",
+              paddingBottom: "0.5rem",
+              display: "inline-block",
+            }}
+          >
+            Email
+          </label>
           <Input {...register("email")} autoComplete="new-email" />
           {errors.email && (
             <p className="text-red-500">{errors.email.message}</p>
           )}
         </div>
         <div>
-          <label>Password</label>
+          <label
+            style={{
+              fontFamily: "Orbitron, sans-serif",
+              paddingBottom: "0.5rem",
+              display: "inline-block",
+            }}
+          >
+            Password
+          </label>
           <Input
             type="password"
             {...register("password")}

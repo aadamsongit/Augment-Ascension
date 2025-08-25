@@ -57,7 +57,7 @@ export const createUserDocumentFromAuth = async (userAuth: User, additionalInfor
 };
 
 // Create a new user with email and password
-export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
+export const createAuthUserWithEmailAndPassword = async (auth: unknown, email: string, password: string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return userCredential.user;
