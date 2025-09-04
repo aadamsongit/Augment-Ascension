@@ -12,8 +12,9 @@ import {
   auth,
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
+  signInWithGooglePopup,
 } from "@/utils/firebase";
-import { Button } from "@/stories/Button";
+import { Button } from "@/components/ui/button";
 
 export default function SignupForm() {
   const {
@@ -40,11 +41,24 @@ export default function SignupForm() {
     }
   };
 
+  const handleSignup = async () => {
+    try {
+      const response = await signInWithGooglePopup();
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-2">Sign Up</h1>
       <h3 className="text-lg font-semibold mb-4">Create a new account</h3>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4"
+        id="signup-form"
+      >
         <div>
           <label
             style={{
@@ -55,7 +69,12 @@ export default function SignupForm() {
           >
             Email
           </label>
-          <Input {...register("email")} autoComplete="new-email" />
+          <Input
+            type="email"
+            {...register("email", { required: "Email is required" })}
+            autoComplete="new-email"
+            placeholder="Enter your email"
+          />
           {errors.email && (
             <p className="text-red-500">{errors.email.message}</p>
           )}
@@ -72,8 +91,9 @@ export default function SignupForm() {
           </label>
           <Input
             type="password"
-            {...register("password")}
+            {...register("password", { required: "Password is required" })}
             autoComplete="new-password"
+            placeholder="Enter your password"
           />
           {errors.password && (
             <p className="text-red-500">{errors.password.message}</p>
@@ -91,14 +111,28 @@ export default function SignupForm() {
           </label>
           <Input
             type="password"
-            {...register("confirmPassword")}
+            {...register("confirmPassword", {
+              required: "Please Confirm your password",
+            })}
             autoComplete="new-password"
+            placeholder="Confirm your password"
           />
           {errors.confirmPassword && (
             <p className="text-red-500">{errors.confirmPassword.message}</p>
           )}
         </div>
-        {/* Sign Up button removed; now handled in signup/page.tsx */}
+        <div className="flex flex-row gap-4 mt-4">
+          <Button className="flex-1 w-full" type="submit">
+            Sign Up
+          </Button>
+          <button
+            type="button"
+            onClick={handleSignup}
+            className="flex-1 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            Signup with Google
+          </button>
+        </div>
       </form>
     </div>
   );
