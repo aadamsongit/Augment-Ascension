@@ -37,7 +37,17 @@ export default function SignupForm() {
       // Optional: create Firestore user doc
       await createUserDocumentFromAuth(user); // Removed displayName
     } catch (error) {
-      console.error("Signup failed:", error);
+      if ((error as { code?: string }).code === "auth/email-already-in-use") {
+        alert("Cannot create user, email already in use");
+      }
+      if ((error as { code?: string }).code === "auth/weak-password") {
+        alert("Password should be at least 8 characters");
+      }
+      if ((error as { code?: string }).code === "auth/invalid-email") {
+        alert("Email is invalid");
+      } else {
+        console.error("Signup failed:", error);
+      }
     }
   };
 

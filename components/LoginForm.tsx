@@ -55,7 +55,11 @@ export default function LoginForm() {
           >
             Email
           </label>
-          <Input {...register("email")} autoComplete="new-email" />
+          <Input
+            {...register("email")}
+            autoComplete="new-email"
+            placeholder="Enter your email"
+          />
           {errors.email && (
             <p className="text-red-500">{errors.email.message}</p>
           )}
@@ -74,6 +78,7 @@ export default function LoginForm() {
             type="password"
             {...register("password")}
             autoComplete="new-password"
+            placeholder="Enter your password"
           />
           {errors.password && (
             <p className="text-red-500">{errors.password.message}</p>
