@@ -21,6 +21,7 @@ export default function SignupForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<SignupFormData>({
     resolver: zodResolver(signUpSchema),
   });
@@ -36,6 +37,7 @@ export default function SignupForm() {
 
       // Optional: create Firestore user doc
       await createUserDocumentFromAuth(user); // Removed displayName
+      reset();
     } catch (error) {
       if ((error as { code?: string }).code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
@@ -135,13 +137,13 @@ export default function SignupForm() {
           <Button className="flex-1 w-full" type="submit">
             Sign Up
           </Button>
-          <button
+          <Button
             type="button"
             onClick={handleSignup}
             className="flex-1 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
           >
             Signup with Google
-          </button>
+          </Button>
         </div>
       </form>
     </div>
