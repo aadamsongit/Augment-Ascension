@@ -3,7 +3,6 @@
 import "../globals.css";
 import LoginForm from "../../../components/LoginForm";
 import SignupForm from "../../../components/SignupForm";
-import { Button } from "@/components/ui/button";
 
 export default function Signup() {
   return (

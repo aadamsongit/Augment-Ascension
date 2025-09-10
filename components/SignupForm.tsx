@@ -15,8 +15,11 @@ import {
   signInWithGooglePopup,
 } from "@/utils/firebase";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function SignupForm() {
+  const { user, loading, logout } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -26,30 +29,14 @@ export default function SignupForm() {
     resolver: zodResolver(signUpSchema),
   });
 
+  const { signup } = useAuth();
+
   const onSubmit = async (data: SignupFormData) => {
     try {
-      const user = await createAuthUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      console.log("User created:", user);
-
-      // Optional: create Firestore user doc
-      await createUserDocumentFromAuth(user); // Removed displayName
+      await signup(data.email, data.password);
       reset();
-    } catch (error) {
-      if ((error as { code?: string }).code === "auth/email-already-in-use") {
-        alert("Cannot create user, email already in use");
-      }
-      if ((error as { code?: string }).code === "auth/weak-password") {
-        alert("Password should be at least 8 characters");
-      }
-      if ((error as { code?: string }).code === "auth/invalid-email") {
-        alert("Email is invalid");
-      } else {
-        console.error("Signup failed:", error);
-      }
+    } catch (err) {
+      console.error(err);
     }
   };
 

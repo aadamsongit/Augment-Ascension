@@ -7,9 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   auth,
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
+  signInWithGooglePopup,
+  signInWithEmailAndPasswordUtil,
 } from "@/utils/firebase";
+import { AuthError } from "firebase/auth";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function LoginForm() {
   const {
@@ -20,23 +22,23 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  const { login } = useAuth();
+
   const onSubmit = async (data: LoginFormData) => {
-    console.log("onSubmit fired", data);
     try {
-      const user = await createAuthUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      if (user) {
-        console.log("User created:", user);
-      } else {
-        console.log("No user returned from createAuthUserWithEmailAndPassword");
-      }
-      // Optional: create user document
-      await createUserDocumentFromAuth(user);
+      await login(data.email, data.password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+  const handleSubmitGoogle = async () => {
+    try {
+      const response = await signInWithGooglePopup();
+      console.log("User logged in with Google:", response);
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error("Google login error:", error);
     }
   };
 
@@ -88,7 +90,18 @@ export default function LoginForm() {
             <p className="text-red-500">{errors.password.message}</p>
           )}
         </div>
-        <Button type="submit">Login</Button>
+        <div className="flex flex-row gap-4 mt-4">
+          <Button className="flex-1 w-full" type="submit">
+            Login
+          </Button>
+          <Button
+            type="button"
+            onClick={handleSubmitGoogle}
+            className="flex-1 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            Login with Google
+          </Button>
+        </div>
       </form>
     </div>
   );
