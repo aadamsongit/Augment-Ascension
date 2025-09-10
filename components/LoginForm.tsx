@@ -44,7 +44,10 @@ export default function LoginForm() {
     <div>
       <h1 className="text-2xl font-bold mb-2">Login</h1>
       <h3 className="text-lg font-semibold mb-4">Access your account</h3>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 md:space-y-6 w-full max-w-md mx-auto"
+      >
         <div>
           <label
             style={{
@@ -56,6 +59,7 @@ export default function LoginForm() {
             Email
           </label>
           <Input
+            className="w-full p-2 border border-gray-300 rounded"
             {...register("email")}
             autoComplete="new-email"
             placeholder="Enter your email"

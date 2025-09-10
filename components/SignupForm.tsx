@@ -68,7 +68,7 @@ export default function SignupForm() {
       <h3 className="text-lg font-semibold mb-4">Create a new account</h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4"
+        className="space-y-4 md:space-y-6 w-full max-w-md mx-auto"
         id="signup-form"
       >
         <div>
@@ -82,6 +82,7 @@ export default function SignupForm() {
             Email
           </label>
           <Input
+            className="w-full p-2 border border-gray-300 rounded"
             type="email"
             {...register("email", { required: "Email is required" })}
             autoComplete="new-email"

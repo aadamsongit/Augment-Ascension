@@ -57,7 +57,9 @@ export const createUserDocumentFromAuth = async (userAuth: User, additionalInfor
 };
 
 // Create a new user with email and password
-export const createAuthUserWithEmailAndPassword = async (auth: unknown, email: string, password: string) => {
+import type { Auth } from 'firebase/auth';
+
+export const createAuthUserWithEmailAndPassword = async (auth: Auth, email: string, password: string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return userCredential.user;
