@@ -19,7 +19,7 @@
     "clsx": "^2.1.1",
     "firebase": "^12.1.0",
     "lucide-react": "^0.540.0",
-    "next": "15.3.3",
+    "next": "^15.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.62.0",
@@ -48,6 +48,7 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.7",
     "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   }
 }

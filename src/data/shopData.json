@@ -1,0 +1,24 @@
+[
+    {
+
+        "id": 1,
+        "name": "Sword of Truth",   
+        "price": 150,
+        "description": "A legendary sword that reveals the truth.",
+        "image": "/images/sword_of_truth.png"
+    },
+    {
+        "id": 2,
+        "name": "Shield of Valor",
+        "price": 100,
+        "description": "A sturdy shield that embodies valor.",
+        "image": "/images/shield_of_valor.png"
+    },
+    {
+        "id": 3,
+        "name": "Potion of Healing",
+        "price": 25,
+        "description": "A magical potion that heals wounds.",
+        "image": "/images/potion_of_healing.png"
+    }
+]
